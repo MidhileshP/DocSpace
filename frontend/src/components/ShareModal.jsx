@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, Share2, UserPlus, Trash2, Crown, Shield, Eye, Edit, AlertTriangle } from 'lucide-react'; // Added Edit and AlertTriangle
+import { FiX, FiShare2, FiUserPlus, FiTrash2, FiShield, FiEye, FiEdit, FiAlertTriangle } from 'react-icons/fi'; 
+import { FaCrown } from 'react-icons/fa';
+
+// import { X, Share2, UserPlus, Trash2, Crown, Shield, Eye, Edit, AlertTriangle } from 'lucide-react'; // Added Edit and AlertTriangle
 import { documentApi } from '../services/api';
 
 const ShareModal = ({ isOpen, onClose, document }) => {
@@ -74,10 +77,10 @@ const ShareModal = ({ isOpen, onClose, document }) => {
   // Helper to get role icon, using Edit for editor
   const getRoleIcon = (role) => {
     switch (role) {
-      case 'owner': return <Crown className="h-4 w-4 text-yellow-500" />;
-      case 'admin': return <Shield className="h-4 w-4 text-red-500" />;
-      case 'editor': return <Edit className="h-4 w-4 text-blue-500" />;
-      case 'viewer': return <Eye className="h-4 w-4 text-gray-500" />;
+      case 'owner': return <FaCrown className="h-4 w-4 text-yellow-500" />;
+      case 'admin': return <FiShield className="h-4 w-4 text-red-500" />;
+      case 'editor': return <FiEdit className="h-4 w-4 text-blue-500" />;
+      case 'viewer': return <FiEye className="h-4 w-4 text-gray-500" />;
       default: return null;
     }
   };
@@ -101,11 +104,11 @@ const ShareModal = ({ isOpen, onClose, document }) => {
       <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b border-primary-200 dark:border-secondary-700">
           <h2 className="text-xl font-semibold text-secondary-900 dark:text-white flex items-center">
-            <Share2 className="h-5 w-5 mr-2" />
+            <FiShare2 className="h-5 w-5 mr-2" />
             {userToRemove ? 'Remove Access' : 'Share Document'}
           </h2>
           <button onClick={onClose} className="text-secondary-500 hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-200">
-            <X className="h-5 w-5" />
+            <FiX className="h-5 w-5" />
           </button>
         </div>
 
@@ -118,7 +121,7 @@ const ShareModal = ({ isOpen, onClose, document }) => {
             <div>
               <div className="flex items-start">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/50 sm:mx-0 sm:h-10 sm:w-10">
-                      <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                      <FiAlertTriangle className="h-6 w-6 text-red-600 dark:text-red-300" aria-hidden="true" />
                   </div>
                   <div className="ml-4 text-left">
                       <h3 className="text-lg leading-6 font-medium text-secondary-900 dark:text-white">Confirm Removal</h3>
@@ -154,7 +157,7 @@ const ShareModal = ({ isOpen, onClose, document }) => {
                   </select>
                 </div>
                 <button type="submit" disabled={loading || !email.trim()} className="w-full bg-secondary-700 text-white py-2 px-4 rounded-md hover:bg-secondary-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center">
-                  <UserPlus className="h-4 w-4 mr-2" />
+                  <FiUserPlus className="h-4 w-4 mr-2" />
                   {loading ? 'Sharing...' : 'Share Document'}
                 </button>
               </form>
@@ -179,7 +182,7 @@ const ShareModal = ({ isOpen, onClose, document }) => {
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRoleColor(perm.role)}`}>{perm.role}</span>
                         {canShare && (
                           <button onClick={() => setUserToRemove(perm)} className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" title="Remove access">
-                            <Trash2 className="h-4 w-4" />
+                            <FiTrash2 className="h-4 w-4" />
                           </button>
                         )}
                       </div>

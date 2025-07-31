@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { LogOut, Edit3 } from 'lucide-react';
+import { FiLogOut, FiEdit3 } from 'react-icons/fi';
 import {Link, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
           <div className="flex justify-between items-center h-16">
             <Link to="/dashboard" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <div className="flex items-center">
-                <Edit3 className="h-8 w-8 text-secondary-700 dark:text-primary-300 mr-2 cursor-pointer" />
+                <FiEdit3 className="h-8 w-8 text-secondary-700 dark:text-primary-300 mr-2 cursor-pointer" />
                 <h1 className="text-2xl font-bold text-secondary-900 dark:text-white hover:text-secondary-800 dark:hover:text-primary-100 transition-colors cursor-pointer">DocSpace</h1>
               </div>
             </Link>
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
                 onClick={handleLogout}
                 className="flex items-center space-x-1 text-secondary-600 dark:text-primary-300 hover:text-secondary-800 dark:hover:text-primary-100 transition-colors"
               >
-                <LogOut className="h-4 w-4" />
+                <FiLogOut className="h-4 w-4" />
                 <span>Logout</span>
               </button>
             </div>

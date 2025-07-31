@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { Edit3 } from "lucide-react";
+//import { Edit3 } from "lucide-react";
+import { FiEdit3 } from 'react-icons/fi';
 import ThemeToggle from "../components/ThemeToggle";
 
 const Login = () => {
@@ -34,7 +35,7 @@ const Login = () => {
         <div className="max-w-md mx-auto flex justify-between items-center px-6 py-4">
           <div className="flex items-center space-x-2">
             <Link to="/" className="flex items-center space-x-2 focus:outline-none group">
-              <Edit3 className="h-7 w-7 text-primary-700 dark:text-primary-300" />
+              <FiEdit3 className="h-7 w-7 text-primary-700 dark:text-primary-300" />
               <span className="text-xl font-bold tracking-tight text-primary-900 dark:text-white">Doc Space</span>
             </Link>
           </div>

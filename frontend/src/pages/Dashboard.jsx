@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { documentApi } from '../services/api';
 import { auth } from '../config/firebase';
-import { Plus, FileText, Calendar, Trash2, Edit, Shield, User, Eye, AlertTriangle } from 'lucide-react';
+import { FiPlus, FiFileText, FiCalendar, FiTrash2, FiEdit, FiShield, FiUser, FiEye, FiAlertTriangle } from 'react-icons/fi';
+//import { Plus, FileText, Calendar, Trash2, Edit, Shield, User, Eye, AlertTriangle } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useDocument } from '../contexts/DocumentContext';
 
@@ -82,10 +83,10 @@ const Dashboard = () => {
 
   const getRoleInfo = (role) => {
     switch (role) {
-      case 'admin': return { text: 'Admin', icon: <Shield className="h-3 w-3" />, color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' };
-      case 'editor': return { text: 'Editor', icon: <Edit className="h-3 w-3" />, color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' };
-      case 'viewer': return { text: 'Viewer', icon: <Eye className="h-3 w-3" />, color: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200' };
-      default: return { text: 'Unknown', icon: <User className="h-3 w-3" />, color: 'bg-gray-100 text-gray-800' };
+      case 'admin': return { text: 'Admin', icon: <FiShield className="h-3 w-3" />, color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' };
+      case 'editor': return { text: 'Editor', icon: <FiEdit className="h-3 w-3" />, color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' };
+      case 'viewer': return { text: 'Viewer', icon: <FiEye className="h-3 w-3" />, color: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200' };
+      default: return { text: 'Unknown', icon: <FiUser className="h-3 w-3" />, color: 'bg-gray-100 text-gray-800' };
     }
   };
 
@@ -109,7 +110,7 @@ const Dashboard = () => {
             <p className="text-secondary-600 dark:text-primary-200 mt-1">Create and manage your documents</p>
           </div>
           <button onClick={handleCreateDocument} className="bg-stone-600 text-white px-4 py-2 rounded-lg hover:bg-stone-700 transition-colors flex items-center space-x-2">
-            <Plus className="h-4 w-4" />
+            <FiPlus className="h-4 w-4" />
             <span>New Document</span>
           </button>
         </div>
@@ -127,7 +128,7 @@ const Dashboard = () => {
             <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-xl p-6 w-full max-w-md">
               <div className="flex items-start">
                 <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/50 sm:mx-0 sm:h-10 sm:w-10">
-                  <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-300" aria-hidden="true" />
+                  <FiAlertTriangle className="h-6 w-6 text-red-600 dark:text-red-300" aria-hidden="true" />
                 </div>
                 <div className="ml-4 text-left">
                   <h3 className="text-lg leading-6 font-medium text-secondary-900 dark:text-white">Delete Document</h3>
@@ -153,7 +154,7 @@ const Dashboard = () => {
         {/* Document List or Empty State */}
         {documents.length === 0 && !loading ? (
           <div className="text-center py-12">
-            <FileText className="h-16 w-16 text-secondary-400 dark:text-secondary-500 mx-auto mb-4" />
+            <FiFileText className="h-16 w-16 text-secondary-400 dark:text-secondary-500 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No documents yet</h3>
             <p className="text-secondary-600 dark:text-primary-200 mb-6">Create your first document to get started</p>
             <button onClick={handleCreateDocument} className="bg-secondary-700 text-white px-6 py-2 rounded-lg hover:bg-secondary-800 transition-colors">
@@ -178,14 +179,14 @@ const Dashboard = () => {
                       <div className="flex items-center space-x-2 flex-shrink-0">
                         {canDelete && (
                            <button onClick={() => setDocToDelete(doc)} className="text-secondary-500 dark:text-secondary-400 hover:text-red-600 dark:hover:text-red-400 transition-colors" title="Delete document">
-                            <Trash2 className="h-4 w-4" />
+                            <FiTrash2 className="h-4 w-4" />
                           </button>
                         )}
                       </div>
                     </div>
                     
                     <div className="flex items-center text-sm text-secondary-500 dark:text-primary-300 mb-4">
-                      <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+                      <FiCalendar className="h-4 w-4 mr-2 flex-shrink-0" />
                       <span>Updated {formatDate(doc.updatedAt)}</span>
                     </div>
                   </div>

@@ -29,7 +29,11 @@ import "@blocknote/xl-ai/style.css";
 import { createGroq } from "@ai-sdk/groq";
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
-import { ArrowLeft, Share2, CheckCircle, Clock, Loader2, Users, Crown } from 'lucide-react';
+import { FiArrowLeft, FiShare2, FiCheckCircle, FiClock, FiUsers } from 'react-icons/fi';
+import { FaCrown } from 'react-icons/fa';
+import { TbLoader2 } from 'react-icons/tb';
+
+//import { ArrowLeft, Share2, CheckCircle, Clock, Loader2, Users, Crown } from 'lucide-react';
 import Layout from '../components/Layout';
 import ShareModal from '../components/ShareModal';
 import { useAuth } from '../contexts/AuthContext';
@@ -498,14 +502,14 @@ function Document() {
         <>
           {lastSaved ? (
             <span className="text-sm text-secondary-500 dark:text-primary-300 flex items-center">
-              <Clock className="h-4 w-4 mr-1.5" />
+              <FiClock className="h-4 w-4 mr-1.5" />
               Last saved: {lastSaved.toLocaleTimeString()}
             </span>
           ) : (
             <div className="h-5 w-40" />
           )}
           <div className="flex items-center space-x-2 bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 rounded-lg px-3 py-1 text-sm font-medium">
-            <Crown className="h-4 w-4" />
+            <FaCrown className="h-4 w-4" />
             <span>{document.createdByName || 'GOD'}</span>
           </div>
         </>
@@ -515,7 +519,7 @@ function Document() {
     if (status === 'saving') {
       return (
         <span className="text-sm text-secondary-500 dark:text-primary-300 flex items-center">
-          <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />
+          <TbLoader2 className="h-4 w-4 mr-1.5 animate-spin" />
           Saving...
         </span>
       );
@@ -524,7 +528,7 @@ function Document() {
     if (status === 'saved' || status === 'idle') {
       return (
         <span className="text-sm text-green-600 dark:text-green-400 flex items-center">
-          <CheckCircle className="h-4 w-4 mr-1.5" />
+          <FiCheckCircle className="h-4 w-4 mr-1.5" />
           Saved
         </span>
       );
@@ -575,7 +579,7 @@ function Document() {
               onClick={() => navigate('/dashboard')} 
               className="flex items-center space-x-2 text-secondary-600 dark:text-primary-300 hover:text-secondary-800 dark:hover:text-primary-100"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <FiArrowLeft className="h-4 w-4" />
               <span>Back</span>
             </button>
 
@@ -583,7 +587,7 @@ function Document() {
               {/* Active Users Display */}
               {activeUsers.length > 0 && (
                 <div className="flex items-center space-x-2 bg-white/50 dark:bg-secondary-800 rounded-lg px-3 py-2 shadow-sm border border-primary-200 dark:border-secondary-700">
-                  <Users className="h-4 w-4 text-secondary-600 dark:text-primary-300" />
+                  <FiUsers className="h-4 w-4 text-secondary-600 dark:text-primary-300" />
                   <span className="text-sm text-secondary-600 dark:text-primary-300">
                     {activeUsers.length} active
                   </span>
@@ -622,7 +626,7 @@ function Document() {
                   onClick={() => setShareModalOpen(true)} 
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2"
                 >
-                  <Share2 className="h-4 w-4" />
+                  <FiShare2 className="h-4 w-4" />
                   <span>Share</span>
                 </button>
               )}

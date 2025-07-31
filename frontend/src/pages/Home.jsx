@@ -1,23 +1,26 @@
 import React from "react";
-import { Edit3, ArrowRight, MessageCircle, Brain, Users } from "lucide-react";
+import { FiEdit3, FiArrowRight, FiMessageCircle, FiUsers } from 'react-icons/fi';
+import { GiBrain } from 'react-icons/gi';
+
+//import { Edit3, ArrowRight, MessageCircle, Brain, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ThemeToggle from "../components/ThemeToggle";
 
 const features = [
   {
-    icon: <MessageCircle className="w-6 h-6 text-white" />,
+    icon: <FiMessageCircle className="w-6 h-6 text-white" />,
     title: "Comments",
     desc: "Discuss and resolve with instant feedback.",
     bg: "bg-primary-700 dark:bg-primary-800",
   },
   {
-    icon: <Brain className="w-6 h-6 text-white" />,
+    icon: <GiBrain className="w-6 h-6 text-white" />,
     title: "Ask AI",
     desc: "Need Anything else? Ask our AI assistant.",
     bg: "bg-blue-600 dark:bg-blue-700",
   },
   {
-    icon: <Users className="w-6 h-6 text-white" />,
+    icon: <FiUsers className="w-6 h-6 text-white" />,
     title: "Live Collaboration",
     desc: "See who’s online. Sync doc edits in real-time.",
     bg: "bg-secondary-700 dark:bg-secondary-800",
@@ -33,7 +36,7 @@ const Home = () => {
       <header className="w-full border-b border-primary-200 dark:border-secondary-700 bg-white/80 dark:bg-secondary-900/80 backdrop-blur-md sticky top-0 z-50 transition-colors duration-500">
         <div className="max-w-2xl mx-auto flex justify-between items-center px-6 py-4">
           <div className="flex items-center space-x-2">
-            <Edit3 className="h-7 w-7 text-primary-700 dark:text-primary-300 cursor:pointer" />
+            <FiEdit3 className="h-7 w-7 text-primary-700 dark:text-primary-300 cursor:pointer" />
             <span className="text-2xl font-bold tracking-tight text-primary-900 dark:text-white cursor:pointer">Doc Space</span>
           </div>
           <div className="flex items-center space-x-3">
@@ -69,7 +72,7 @@ const Home = () => {
               className="inline-flex items-center gap-2 bg-primary-700 dark:bg-primary-600 text-white px-6 py-3 rounded-full hover:bg-primary-800 dark:hover:bg-primary-700 transition-all font-semibold text-lg shadow-sm"
             >
               <span>Get Started</span>
-              <ArrowRight className="w-5 h-5" />
+              <FiArrowRight className="w-5 h-5" />
             </button>
             <button
               onClick={() => navigate("/login")}
@@ -90,9 +93,9 @@ const Home = () => {
             <div className="flex-1 flex flex-col items-center justify-center">
               <div className="text-2xl font-bold text-primary-900 dark:text-white">Your doc, live.</div>
               <div className="flex items-center gap-2 mt-3">
-                <MessageCircle className="w-4 h-4 text-primary-600 dark:text-primary-400" />
-                <Brain className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                <Users className="w-4 h-4 text-secondary-700 dark:text-secondary-400" />
+                <FiMessageCircle className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                <GiBrain className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                <FiUsers className="w-4 h-4 text-secondary-700 dark:text-secondary-400" />
               </div>
               <div className="text-xs text-primary-400 dark:text-primary-200 mt-3">
                 Real-time collaboration | Comments | Ask AI
