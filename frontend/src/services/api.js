@@ -1,6 +1,6 @@
 import { auth } from '../config/firebase';
 
-const API_BASE_URL = "https://docspace-backend.onrender.com"; // Ensure this is your correct backend URL
+const API_BASE_URL = "https://docspace-backend.onrender.com/api"; // Ensure this is your correct backend URL
 
 const getAuthToken = async () => {
   const user = auth.currentUser;
