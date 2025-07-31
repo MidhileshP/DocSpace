@@ -40,7 +40,7 @@ import {
   DefaultThreadStoreAuth,
   YjsThreadStore,
 } from "@blocknote/core/comments";
-import { getEnv } from "./getEnv.js";
+import { getEnv } from "/etc/secrets/getEnv.js";
 
 
 
