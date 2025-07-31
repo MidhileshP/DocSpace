@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  title: Changer API
+  description: API for managing documents and collaboration.
+  version: 1.0.0
+servers:
+  - url: /api
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The document identifier.
+        title:
+          type: string
+          description: The title of the document.
+        content:
+          type: object
+          description: The content of the document in BlockNote format.
+        roles:
+          type: object
+          description: A map of user IDs to their roles (e.g., admin, editor, viewer).
+        members:
+          type: array
+          items:
+            type: string
+          description: An array of user IDs who are members of the document.
+        createdAt:
+          type: string
+          format: date-time
+          description: The creation date of the document.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The last update date of the document.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A message describing the error.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - BearerAuth: []
+paths:
+  /docs:
+    get:
+      summary: Get all documents
+      description: Retrieves a list of all documents that the authenticated user is a member of.
+      responses:
+        '200':
+          description: A list of documents.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new document
+      description: Creates a new document with the authenticated user as the admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: object
+      responses:
+        '201':
+          description: The created document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /docs/{id}:
+    get:
+      summary: Get a document by ID
+      description: Retrieves a single document by its ID, if the user has access.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Access denied
+        '404':
+          description: Document not found
+        '500':
+          description: Server error
+    put:
+      summary: Update a document
+      description: Updates a document's title, content, or roles.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: object
+                roles:
+                  type: object
+      responses:
+        '200':
+          description: Document updated successfully.
+        '403':
+          description: Access denied
+        '404':
+          description: Document not found
+        '500':
+          description: Server error
+    delete:
+      summary: Delete a document
+      description: Deletes a document if the user is an admin.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document deleted successfully.
+        '403':
+          description: Access denied
+        '404':
+          description: Document not found
+        '500':
+          description: Server error
+  /docs/{id}/permissions:
+    get:
+      summary: Get document permissions
+      description: Retrieves the users and their roles for a specific document.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of users and their roles.
+        '404':
+          description: Document not found
+        '500':
+          description: Server error
+  /docs/{id}/share:
+    post:
+      summary: Share a document
+      description: Shares a document with another user by email and assigns a role.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                role:
+                  type: string
+                  enum: [editor, viewer]
+      responses:
+        '200':
+          description: Document shared successfully.
+        '404':
+          description: User or document not found
+        '500':
+          description: Server error
+  /docs/{id}/remove_access:
+    post:
+      summary: Remove user access
+      description: Removes a user's access from a document.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userIdToRemove:
+                  type: string
+      responses:
+        '200':
+          description: User access removed successfully.
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '404':
+          description: Document not found
+        '500':
+          description: Server error
+  /docs/users/details:
+    post:
+      summary: Get user details
+      description: Retrieves public details for a list of user IDs.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userIds:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: A list of user details.
+        '400':
+          description: Bad request
+        '500':
+          description: Server error 
