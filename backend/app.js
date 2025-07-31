@@ -17,7 +17,7 @@ const swaggerDocument = YAML.load(path.join(__dirname, 'openapi.yaml'));
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // or '*' for all (not recommended for prod)
+  origin: 'https://docspace-frontend.onrender.com', // or '*' for all (not recommended for prod)
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
